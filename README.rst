@@ -29,8 +29,6 @@ Install by running::
 
    pip install uuid0
 
-.. highlight:: python3
-
 Example usage::
 
    >>> import uuid0
