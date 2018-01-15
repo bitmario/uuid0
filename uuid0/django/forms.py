@@ -1,3 +1,4 @@
+import uuid
 import django.forms.fields as fields
 from django.utils.translation import ugettext_lazy as _
 
@@ -18,8 +19,11 @@ class UUID0Field(fields.CharField):
         if value in self.empty_values:
             return None
         if not isinstance(value, uuid0.UUID):
-            try:
-                value = uuid0.UUID(base62=value)
-            except ValueError:
-                raise ValidationError(self.error_messages['invalid'], code='invalid')
+            if isinstance(value, uuid.UUID):
+                value = uuid0.UUID(int=value.int)
+            else:
+                try:
+                    value = uuid0.UUID(base62=value)
+                except ValueError:
+                    raise ValidationError(self.error_messages['invalid'], code='invalid')
         return value

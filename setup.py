@@ -19,7 +19,7 @@ def readme():
         return f.read()
 
 setup(name='uuid0',
-      version='0.1.2',
+      version='0.2.0',
       description='A library to make better timestamped UUIDs for databases and web apps',
       long_description=readme(),
       url='https://github.com/oaclaf/uuid0',

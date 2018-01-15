@@ -28,14 +28,15 @@ class UUID0Field(fields.UUIDField):
         if value is not None and not isinstance(value, uuid0.UUID):
             if isinstance(value, uuid.UUID):
                 return uuid0.UUID(int=value.int)
-            try:
-                return uuid0.UUID(value)
-            except (AttributeError, ValueError):
-                raise exceptions.ValidationError(
-                    self.error_messages['invalid'],
-                    code='invalid',
-                    params={'value': value},
-                )
+            else:
+                try:
+                    return uuid0.UUID(value)
+                except (AttributeError, ValueError):
+                    raise exceptions.ValidationError(
+                        self.error_messages['invalid'],
+                        code='invalid',
+                        params={'value': value},
+                    )
         return value
 
     def formfield(self, **kwargs):
@@ -47,7 +48,7 @@ class UUID0Field(fields.UUIDField):
 
 
 class UUID0Model(models.Model):
-    uuid = UUID0Field(_('UUID'), primary_key=True)
+    uuid = UUID0Field(_('UUID'), unique=True, editable=False)
 
     @property
     def uuid_base62(self):
@@ -56,6 +57,15 @@ class UUID0Model(models.Model):
     @property
     def uuid_datetime(self):
         return self.uuid.datetime
+
+    def __str__(self):
+        return self.uuid_base62
+
+    class Meta:
+        abstract = True
+
+class UUID0PKModel(UUID0Model):
+    uuid = UUID0Field(_('UUID'), primary_key=True, editable=False)
 
     class Meta:
         abstract = True
