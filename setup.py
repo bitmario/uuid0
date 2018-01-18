@@ -19,7 +19,7 @@ def readme():
         return f.read()
 
 setup(name='uuid0',
-      version='0.2.0',
+      version='0.2.7',
       description='A library to make better timestamped UUIDs for databases and web apps',
       long_description=readme(),
       url='https://github.com/oaclaf/uuid0',
@@ -27,6 +27,6 @@ setup(name='uuid0',
       author_email='oaclafm@gmail.com',
       license='MIT',
 	  classifiers=CLASSIFIERS,
-      packages=['uuid0', 'uuid0.django'],
+      packages=['uuid0'],
       install_requires=['pybase62'],
       zip_safe=False)
