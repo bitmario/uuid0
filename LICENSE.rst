@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2018 oaclafm <oaclafm@gmail.com> and the uuid0 contributors
+Copyright (c) 2018 bitmario and the uuid0 contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
